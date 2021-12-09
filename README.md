@@ -4,5 +4,5 @@ Build scripts for the singularity / apptainer container system on debian / ubunt
 
 ## Usage
 
-If you have root access, run `sh install-dependencies.sh`. Then, you can run `sh build.sh` and 
+If you have root access, run `sh build.sh` and 
 singularity 3.8 will be installed to `/usr/local/bin`
