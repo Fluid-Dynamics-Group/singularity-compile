@@ -7,15 +7,15 @@ sudo apt-get update && sudo apt-get install -y \
     wget \
     pkg-config \
     git \
-    cryptsetup-bin \
-    golang && \
+    cryptsetup-bin
 
-git clone https://github.com/apptainer/singularity/ --branch release-3.8 --single-branch --depth 1 && \
-cd singularity && \
+# golang should be installed manually since ubuntu based systems are really poor about this
 
-./mconfig && \
+git clone https://github.com/apptainer/apptainer.git && \
+    cd apptainer && \
+
+git checkout v1.0.2 && \
+
+./mconfig --prefix=/opt/apptainer && \
     make -C ./builddir && \
-    sudo make -C ./builddir install &&
-
-sudo mv /usr/local/bin/singularity /usr/bin
-
+    sudo make -C ./builddir install
