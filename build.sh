@@ -1,3 +1,6 @@
+# crash out of this program if things dont work as expected
+set -e
+
 sudo apt-get update && sudo apt-get install -y \
     build-essential \
     uuid-dev \
@@ -9,12 +12,19 @@ sudo apt-get update && sudo apt-get install -y \
     git \
     cryptsetup-bin
 
-# golang should be installed manually since ubuntu based systems are really poor about this
+#
+# Install golang manually
+#
+wget https://go.dev/dl/go1.19.2.linux-amd64.tar.gz 
+tar -xzf go1.19.2.linux-amd64.tar.gz
+# the above tar extracts to the folder ./go
+sudo mv go /opt/go
+sudo ln -s /opt/go/bin/go /usr/local/bin/
 
-git clone https://github.com/apptainer/apptainer.git && \
-    cd apptainer && \
+git clone https://github.com/apptainer/apptainer.git
+cd apptainer
 
-git checkout v1.0.2 && \
+git checkout v1.0.2
 
 ./mconfig --prefix=/opt/apptainer && \
     make -C ./builddir && \
